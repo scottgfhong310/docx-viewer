@@ -25,7 +25,7 @@
   var docBox = document.getElementById('dv-doc');
   var container = document.getElementById('dv-container');
   var docName = document.getElementById('dv-doc-name');
-  var docOpen = document.getElementById('dv-doc-open');
+  var downloadBtn = document.getElementById('setting-download');
   var sideNav = document.getElementById('side-nav');
   var dropOverlay = document.getElementById('drop-overlay');
   var filePicker = document.getElementById('file-picker');
@@ -80,6 +80,29 @@
     docBox.style.display = show ? 'block' : 'none';
     emptyState.style.display = show ? 'none' : '';
     document.body.classList.toggle('is-empty', !show);
+    // 下載側鍵只在有開檔時出現（.side-tool 預設 flex）
+    if (downloadBtn) downloadBtn.style.display = show ? 'flex' : 'none';
+  }
+
+  // 「已執行」微回饋：icon 暫時變 check 800ms（家族 §5.5）
+  function setIconDone(el) {
+    var i = el && el.querySelector('i');
+    if (!i) return;
+    var orig = i.textContent;
+    i.textContent = 'check';
+    setTimeout(function () { i.textContent = orig; }, 800);
+  }
+
+  // 下載目前開啟的原始檔（逐段編碼 href + 原檔名 download）
+  function downloadCurrent() {
+    if (!state.current) return;
+    var a = document.createElement('a');
+    a.href = L.encodePath(state.current);
+    a.download = state.name || L.basename(state.current);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setIconDone(downloadBtn);
   }
 
   /* ---------- loading 動畫 ---------- */
@@ -119,9 +142,6 @@
     markActive(link);
     showDoc(true);
     showLoading();
-    // 下載原始檔：逐段編碼的 href + 原檔名 download
-    docOpen.href = L.encodePath(link);
-    docOpen.setAttribute('download', state.name);
     container.innerHTML = '';   // 切檔時清掉前一份輸出，避免堆疊
     return L.fetchBlob(link)
       .then(function (blob) {
@@ -303,6 +323,7 @@
     });
     document.getElementById('setting-mode').addEventListener('click', toggleTheme);
     document.getElementById('setting-lang').addEventListener('click', cycleLang);
+    document.getElementById('setting-download').addEventListener('click', downloadCurrent);
     document.getElementById('setting-clear').addEventListener('click', clearFolder);
 
     // 上一頁／下一頁：依 ?docx 重新載入
