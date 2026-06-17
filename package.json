@@ -1,0 +1,24 @@
+{
+  "name": "docx-viewer",
+  "version": "1.0.0",
+  "description": "在瀏覽器內高保真檢視 Word（.docx）文件的單頁 WebApp（docx-preview：分頁 / 頁首頁尾 / 註腳 / 字型）+ 輕量 Express 後端（上傳 / 列表 / 清空）。",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "docx",
+    "word",
+    "viewer",
+    "docx-preview",
+    "office",
+    "express",
+    "materialize"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.0"
+  }
+}
