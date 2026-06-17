@@ -40,7 +40,7 @@ npm install && node app.js          # → http://localhost:3000/apps/docx-viewer
 - **主題（含「紙張」）**：CSS 變數 light/dark，**預設 dark**（`<html data-theme="dark">` ＋ `localStorage('docx-viewer-theme')||'dark'`）；防閃爍開機腳本同時 toggle `dark-mode`/`light-mode` class 驅動 `materialize-dark.css`（§5.1）。docx-preview 輸出在 **light DOM**，故「紙張」由本頁 CSS 著色——`--paper-bg`/`--paper-fg` 兩主題各一份，**深色時連文件頁面也轉深**；切主題只翻 `data-theme`、**不必重新渲染**。列印 `@media print` 一律白紙黑字。
   - **已知取捨**：`.docx` 內帶**明確顏色**的文字會保留原色，深色紙張上可能對比偏低（自動 / 繼承色會跟著轉淺）。屬「紙張跟主題」決議的固有取捨；需要時切淺色或列印。
 - **i18n**：`i18n.js` 引擎 + `locales/*.js`，`data-i18n` 屬性，預設 `zh-Hant`。文件內容是 **data，永不翻譯**（也不隨語系重新渲染）。
-- **side-tool**：`#setting-menu`（檔案清單）/ `#setting-mode`（主題）/ `#setting-lang` / `#setting-clear`（清空，hover 轉紅）；用〔正統〕flex `.side-tools` 容器。下載原始檔是 toolbar 內的 `#dv-doc-open`（`file_download` icon + `download` 屬性、href 經 `encodePath`）。
+- **side-tool**：`#setting-menu`（檔案清單）/ `#setting-mode`（主題）/ `#setting-lang` / `#setting-download`（下載原始檔，只在開檔時顯示、臨時 `<a download>` + check 回饋、href 經 `encodePath`）/ `#setting-clear`（清空，hover 轉紅）；用〔正統〕flex `.side-tools` 容器。**下載走側鍵、toolbar 不放操作鍵**（家族 §4.7）。
 - **安全**：上傳白名單 `.docx`（picker accept + 前端 `isUploadable` 再驗）；後端操作目標寫死、`{ ok }` 信封；危險操作 `confirm()`。jQuery 3.7.1，後端不依賴 lodash。
 - **InProgress 鏡像**：同名前端回灌到 `InProgress/public/apps/docx-viewer/`，route 掛在 InProgress 的 `/api/docx-viewer`；上傳沿用 InProgress 共用 `/api/upload?folder=docx-viewer`（雙鍵 `{ ok, success }`，前端查 `resp.ok`）。
 - **preview**：`GitHub/.claude/launch.json` 有一筆 `docx-viewer`（`node docx-viewer/app.js`，port 3000）。
