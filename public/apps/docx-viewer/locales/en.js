@@ -10,6 +10,7 @@ I18n.register('en', {
   'tool.menu': 'File list',
   'tool.mode': 'Toggle light / dark',
   'tool.lang': 'Language',
+  'toast.lang': 'Switched to {name}',
   'tool.clear': 'Clear /upload/docx-viewer',
   'tool.download': 'Download the original file',
   'toast.badLink': 'Path not allowed (blocks traversal / external protocols)',
