@@ -11,7 +11,7 @@
 
 ```
 app.js                              # Express 入口：port 3000；/ → 302 /apps/docx-viewer/
-routes/upload.js                    # POST /api/upload?folder=docx-viewer（共用最小版）
+routes/upload.js                    # POST /api/upload?folder=docx-viewer（共用最小版；含檔名消毒 sanitizeUploadName，§3.4）
 routes/docx-viewer.js               # GET /files、POST /clear
 public/apps/docx-viewer/            # 前端（服務於 /apps/docx-viewer/）
 ├─ index.html · docx-viewer.css · docx-viewer.js · docx-viewer-lib.js
