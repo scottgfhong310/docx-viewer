@@ -18,6 +18,7 @@ I18n.register('ja', {
   'toast.notDocx': 'Word ファイル（.docx）をドロップしてください',
   'toast.engineMissing': '変換エンジンが未読み込みです。ページを再読み込みしてください',
   'toast.uploaded': 'アップロード完了：{n}',
+  'toast.uploadedRenamed': '同名のため {n} として保存しました',
   'toast.uploadFail': 'アップロード失敗：{n}（{m}）',
   'toast.listFail': 'ファイル一覧の取得に失敗：{m}',
   'toast.cleared': '{n} 件のファイルを削除しました',

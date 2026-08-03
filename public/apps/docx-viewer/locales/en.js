@@ -18,6 +18,7 @@ I18n.register('en', {
   'toast.notDocx': 'Please drop a Word file (.docx)',
   'toast.engineMissing': 'Converter not loaded yet — please reload the page',
   'toast.uploaded': 'Uploaded: {n}',
+  'toast.uploadedRenamed': 'Name already exists — saved as: {n}',
   'toast.uploadFail': 'Upload failed: {n} ({m})',
   'toast.listFail': 'Failed to load file list: {m}',
   'toast.cleared': 'Cleared {n} file(s)',
